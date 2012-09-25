@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# changing directory to code project
+function c { cd ~/code/$1; }
+
+# alternative to "rails" command to use templates
+function railsapp {
+  template=$1
+  appname=$2
+  shift 2
+  rails $appname -m http://github.com/ryanb/rails-templates/raw/master/$template.rb $@
+}
+
+# misc
+alias reload='. ~/.bash_profile'
+alias m="mate"
+
+# cd
+alias ..='cd ..'
+
+# git
+alias glg='git log --graph --pretty=format:"%Cred%h%Creset %C(yellow)%an%d%Creset %s %Cgreen(%cr)%Creset" --date=relative'
+alias gist='~/local/bin/gist.sh'
+alias gst='git status -s'
+# ubuntu
+alias tail='tail -f'
+alias ll='ls -alF'
+alias la='ls -A'
+
+# creates a webserver in the current directory
+alias webserver="python -m SimpleHTTPServer"
+
+# mkdir and cd into it:
+mkcd () { mkdir -p "$@" && cd "$@"; }
+
+# I've given up on memorizing tar syntax, so:
+extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)  tar xjf $1      ;;
+            *.tar.gz)   tar xzf $1      ;;
+            *.bz2)      bunzip2 $1      ;;
+            *.rar)      rar x $1        ;;
+            *.gz)       gunzip $1       ;;
+            *.tar)      tar xf $1       ;;
+            *.tbz2)     tar xjf $1      ;;
+            *.tgz)      tar xzf $1      ;;
+            *.zip)      unzip $1        ;;
+            *.Z)        uncompress $1   ;;
+            *)          echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}

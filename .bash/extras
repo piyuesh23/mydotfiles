@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+showsshkey(){
+  cat ~/.ssh/id_rsa.pub
+}
+
+# Show the IP addresses of this machine, with each interface that the address is on.
+myip () {
+  local interface=""
+  local types='vmnet|en|eth|vboxnet'
+  local i
+  for i in $(
+    ifconfig \
+    | egrep -o '(^('$types')[0-9]|inet (addr:)?([0-9]+\.){3}[0-9]+)' \
+    | egrep -o '(^('$types')[0-9]|([0-9]+\.){3}[0-9]+)' \
+    | grep -v 127.0.0.1
+  ); do
+    if ! [ "$( echo $i | perl -pi -e 's/([0-9]+\.){3}[0-9]+//g' )" == "" ]; then
+      interface="$i":
+    else
+      echo $interface $i
+    fi
+  done
+}
+
+# Display path variable
+showpath () { eval echo \$${1:-PATH} |tr : '\n'; }
+
+abtest () {
+  ab -n $2 -c $3 -H 'Accept-Encoding: gzip' "http://$1/"
+}
+
+showsshconfig() {
+  cat ~/.ssh/config
+}
+
+opensshconfig(){
+  $EDITOR ~/.ssh/config
+}
+
+openhostsfile(){
+  sudo $EDITOR /etc/hosts
+}
+
+nvv() {
+  npm view $1 version
+}
