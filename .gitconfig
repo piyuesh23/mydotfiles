@@ -1,0 +1,41 @@
+[user]
+	name = piyuesh23
+	email = piyuesh23@qed42.com
+[alias]
+  c  = commit
+  cm = commit -m
+  cma = commit -am
+  a = add
+  aa = add .
+  st = status
+  br = branch
+  co = checkout
+  df = diff
+  ps = push
+  pl = pull
+  fe = fetch
+  cl = clone
+  ra = remote add
+  rao = remote add origin
+  lg = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%an%d%Creset %s %Cgreen(%cr)%Creset' --date=relative
+  lo = log --oneline
+  authors = log --pretty=format:'%an <%ae>'
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow 
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[github]
+  user = piyuesh23
