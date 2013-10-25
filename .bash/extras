@@ -45,3 +45,39 @@ openhostsfile(){
 nvv() {
   npm view $1 version
 }
+drush_alias() {
+  echo "Webroot path on dev instance:"
+  read webroot_dev
+  echo "Webroot path on local instance:"
+  read webroot_local
+  echo "Drush alias for dev:"
+  read alias_dev
+  echo "Drush alias for local:"
+  read alias_local
+  echo "Dev db dump directory:"
+  read dump_dir_dev
+  echo "Local db dump directory:"
+  read dump_dir_local
+  echo "Uri for dev instance:"
+  read uri_dev
+  echo "Uri for local instance:"
+  read uri_local
+  echo "Hostname for dev instance:"
+  read host_dev
+  echo "Username for dev instance ssh:"
+  read user_dev
+  echo 'Drush Alias filename'
+  read filename
+
+  sed -e "s;%WEBROOT_DEV%;$1webroot_dev;" -e "s;%ALIAS_DEV%;$alias_dev;" -e "s;%URI_DEV%;$uri_dev;" -e "s;%USER_DEV%;$user_dev;" -e "s;%HOST_DEV%;$host_dev;" -e "s;%DUMP_DIR_DEV%;$dump_dir_dev;" -e "s;%WEBROOT_LOCAL%;$webroot_local;" -e "s;%ALIAS_LOCAL%;$alias_local;" -e "s;%URI_LOCAL%;$uri_local;" -e "s;%DUMP_DIR_LOCAL%;$dump_dir_local;" ~/.drush/template.aliases.drushrc.php > ~/.drush/$filename
+  echo $filename" Created successfully in "$HOME"/.drush/"
+}
+deploy() {
+  echo "Drush alias for the source:"
+  read source_alias
+  echo "Drush alias for the destination:"
+  read dest_alias
+
+  drush sql-sync $source_alias $dest_alias
+  drush rsync $source_alias:%files $dest_alias:%files
+}
