@@ -31,5 +31,8 @@ source ~/.bash/extras
 # z - jump to folders
 # https://github.com/rupa/z/raw/master/z.sh
 # source ~/bin/z.sh
-
-# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+source /Users/piyuesh/.rvm/scripts/rvm
+PATH=/usr/local/bin:$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+alias ctags='/usr/local/bin/ctags'
+HISTSIZE=1000000
+HISTFILESIZE=1000000000
