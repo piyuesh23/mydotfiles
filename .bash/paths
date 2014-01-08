@@ -6,3 +6,5 @@ export PATH=$PATH:$HOME/bin
 #export PATH=$PATH:$HOME/local/node/bin
 export PATH=$PATH:/usr/local/Cellar/sbt/0.12.0/bin
 #export REDIS_DATA_DIR=/data/redis
+export PATH=$PATH:/usr/local/Cellar/sbt/0.12.0/bin
+export PATH=$PATH:/Users/piyuesh/git-hooks/git-hooks
